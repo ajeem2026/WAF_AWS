@@ -97,12 +97,15 @@ AWS CloudWatch is a monitoring and observability service for AWS resources.
 
 ---
 
-## **Additional Features of AWS WAF**
-- **BOT Control:** Detects and mitigates bot traffic.
-- **Application Integration SDKs:** Provides additional user telemetry.
-- **IP Sets & Regex Pattern Sets:** Enables custom filtering.
-- **OWASP Top 10 Add-On Protections:** Addresses common security vulnerabilities.
+## **Security Standards & Compliance**
+This implementation aligns with:
+- **NIST Cybersecurity Framework (CSF)**: Web access control and traffic filtering best practices.
+- **OWASP Top 10**: Protection against common web threats, including bot mitigation and injection attacks.
+- **AWS Well-Architected Framework (Security Pillar)**: Secure DNS resolution, encryption, and monitoring.
+---
 
+## **Documentation & GitHub Integration**
+All steps are documented with screenshots for clarity. Visit the repository's `/Images` folder for visual references.
 ---
 
 ## **Conclusion**
