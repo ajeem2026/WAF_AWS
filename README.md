@@ -20,3 +20,13 @@ Thirdly, I am now going to CloudFront after my successful cert validation and cr
 In Viewer protocol policy, change it to : "Redirect HTTP to HTTPS". Again within "Custom SSL certificate" --> choose the certificate that you just created. Also, in Alternative DOmain name (CNAME) put in the "www" version of your static website. Finally, enable AWS WAF for security implementation and create distribution. 
 
 Now that we have a distrubtion for the "www" version of my website, I am now going to create another distribution for the non-www version using the same procedure. Now I have my 2 distributions ready. 
+
+Final two things now: Our distribution is NOT secure without HTTPS and the MAIN domain name is still in the "code".cloudfront.net format (this can be accessed now without the HTTPS warning tho). We have to make final two configurations to ensure this is fixed. 
+
+I am going back to S3 to my buckets and under "Properties" I am going to edit "Static Website Hosting" protocol from HTTP to HTTPS. 
+
+To change the main domain name, we go back to Route53 and find the two records with CNAME type. First, we will check the record with "A" type and then edit record. Here, we need to change "Route traffic to" from Alias to S3 website endpoint to "Alias to Cloudfront distribution." and then we choose the our distribution which will already be provided by the system. 
+
+Now do the same changes for the other type A record (which will hold the "www." version). You will notice that the system automatically gives you the distribution domain name. 
+
+That's it! Now I've successfully deployed my first static website using AWS.
