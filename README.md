@@ -57,7 +57,7 @@ curl -G --data-urlencode "id=1' OR '1'='1" "https://www.aws-security.click/"
 - **Logging & Monitoring:**  
   - SQL Injection attempts are logged in **AWS CloudWatch** as security incidents.
  
-  ```bash
+```bash
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
@@ -79,6 +79,7 @@ Request ID: wTvNgivi-9XgGUxLx8dghi7oyGYBCKbMqhNE34KSJ9UIpgeUFR9O5g==
 <ADDRESS>
 </ADDRESS>
 </BODY></HTML>%
+
 ```
 
 ---
