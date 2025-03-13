@@ -17,4 +17,6 @@ Secondly, after my certificate is validated, I need to create records in Route53
 
 Thirdly, I am now going to CloudFront after my successful cert validation and creation of the two records. After going to cloudfront, I am first creating a cloudFront distribution. Here, I first have to copy the origin domain. For which I go back to S3 and select the bucket with "www" version --> properties --> copy the link from "Static Website Hosting" section under the label "Bucket Wesbite Endpoint" at the very bottom. Paste this link into CloudFront and keep all the default configurations. The only change:
 
-In Viewer protocol policy, change it to : "Redirect HTTP to HTTPS". Again within "Custom SSL certificate" --> choose the certificate that you just created. Also, in Alternative DOmain name (CNAME) put in the "www" version of your static website. 
+In Viewer protocol policy, change it to : "Redirect HTTP to HTTPS". Again within "Custom SSL certificate" --> choose the certificate that you just created. Also, in Alternative DOmain name (CNAME) put in the "www" version of your static website. Finally, enable AWS WAF for security implementation and create distribution. 
+
+Now that we have a distrubtion for the "www" version of my website, I am now going to create another distribution for the non-www version using the same procedure. Now I have my 2 distributions ready. 
