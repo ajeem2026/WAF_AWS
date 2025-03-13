@@ -21,7 +21,7 @@ This project aligns with:
 2. Name it **WebAppWAF** and attach it to **CloudFront** (or ALB for backend protection).
 3. Set the **default action** to **Allow traffic unless explicitly blocked**.
 
-![Web ACL Creation](Images/screenshot1.png)
+![Web ACL Creation](Images/sql-rule.png)
 
 ---
 
@@ -38,7 +38,6 @@ AWS WAF provides **pre-configured security rule sets** to protect against known 
 - **Zero-day Protection**: AWS updates managed rules against emerging threats.
 - **Scalability**: Protects apps under high traffic conditions.
 
-![Adding Rules](Images/screenshot2.png)
 
 ---
 
@@ -86,6 +85,8 @@ Request ID: wTvNgivi-9XgGUxLx8dghi7oyGYBCKbMqhNE34KSJ9UIpgeUFR9O5g==
 
 ## 1. Monitoring AWS WAF Logs
 AWS WAF logs are integrated with CloudWatch to provide detailed insights into security events.
+
+![Adding Rules](Images/log.png)
 
 ### Key Security Metrics:
 - **SQL Injection Attempts:**  
