@@ -1,68 +1,114 @@
-# WAF_AWS
+# Deploying AWS WAF for Web Security
 
-What is AWS WAF? AWS's own web application firewall. It is a managed WAF service that integrates natively with many resources running in AWS and gives us control over HTTPS requests. We can set custom rulesets without having to download any external software. 
+## Introduction
 
-We can use AWS WAF to protect our resources like:
+AWS WAF (Web Application Firewall) is a managed service that provides fine-grained control over HTTP/HTTPS requests reaching AWS resources. It allows users to define security rules to protect web applications without the need for additional software.
 
-1. Application load balancers (ALBs)
-2. Amazon CloudFront Distributions (Amazon's CDN service)
-3. Amazon API Gateway APIs (their API management service)
-4. AWS AppSync GraphQL APIs (graphQL service)
-5. Amazon Cognito User pools (customer identity and access management service)
-6. Amazon ECS containers (Elastic Container Service)
+### **Why AWS WAF?**
+AWS WAF integrates with key AWS services to enhance security:
+- **Application Load Balancers (ALBs)**
+- **Amazon CloudFront (Content Delivery Network)**
+- **Amazon API Gateway (API Management Service)**
+- **AWS AppSync (GraphQL Service)**
+- **Amazon Cognito (Identity and Access Management Service)**
+- **Amazon ECS (Elastic Container Service)**
 
+### **AWS WAF Components**
+AWS WAF operates on three primary components:
+1. **Web Access Control Lists (ACLs):** Collections of rules that define security behavior.
+2. **Rules:** Statements that inspect requests and specify actions.
+3. **Rule Groups:** Reusable rule sets, both managed by AWS and custom.
 
-WAF works on 3 different components:
+---
 
-1. Web Access Control Lists (ACLs) which are made up of rules
-2. Rules: Statements that define inspection criteria and the action to take if web request matches the criteria
-3. Rule groups: Reuasble groups of rules (there are internal ones and custom ones we can make ourselves!)
+## **Step 1: Creating a Web ACL**
 
+1. Navigate to AWS WAF service and click **Create Web ACL**.
+2. Name the ACL **first_rules** and configure the **CloudWatch metric name**.
+3. Attach the ACL to your **CloudFront distribution**.
 
+![Web ACL Creation](screenshot1.png)
 
-Section-1: Creating a web ACL
+---
 
-1. Search for AWS WAF service and click create web ACL
-2.  I named my webACL and CloudWatch metric name "first_rules" and added my website as CloudFront Distribution resources.
+## **Step 2: Creating Rules**
 
-Section -2: Creating rules:
-1. Click on Add Rules and then select "Add managed rule groups" which gives us a list of pre-created rules. This is a list of managed rule groups from AWS and other organizations. In AWS paid rule groups, there are speciliased paid rules to prevent attack takeovers and fight against automated bots. For this project, we are going to use Free Rule Groups. 
-2. Toggle "Add to web ACL" for the Amazon Reputation IP list and then minimize tab to "Add Rules"
-3. The added rule will join our managed list of rules and now show to consume 25/5000 units of our WEBACL capacity
+1. Click **Add Rules** → **Add Managed Rule Groups**.
+2. Browse **AWS Managed Rule Groups** to find pre-configured security policies.
+3. Select **Amazon Reputation IP List** and click **Add to Web ACL**.
+4. The rule now appears in the managed rule list, consuming **25/5000 WEBACL units**.
 
-Section -3: Configuring rules
-1. For the "Default web ACL action for requests that don't match any rules", we will allow the request to go through if it doesn't match any of the rules above.
-2. Optionally, we can add a custom header to each request that was allowed to go through and AWS WAF will automatically prefix the custom header with x-amzn-waf-
-3. If a bot is suspected, AWS WAF will verify the client with a captcha challenge. Once verified, we don't want to verify the client again when they travel to other parts of our application or domain. We can add those other app domains on our "Token Domain List"
+![Adding Rules](screenshot2.png)
 
-Section-4: Setting rule priorities
+---
 
-1. This is important becasuse the first rules that match will be the ones that get evaluated.
+## **Step 3: Configuring Rules**
 
-Section-5: Configuring CloudWatch Metrics
+1. Set **Default Web ACL Action** to **Allow requests that don’t match any rules**.
+2. (Optional) Add custom headers prefixed with `x-amzn-waf-`.
+3. Enable **CAPTCHA verification** for suspected bot traffic.
+4. Configure a **Token Domain List** to prevent re-verification when users navigate across applications.
 
-What is CloudWatch? 
-=> An AWS service that lets you observe and monitor your resources on AWS or on-premises. We get access to some free metrics as part of the free tier account. 
+![Rule Configuration](screenshot3.png)
 
-1. We keep these to the default configuration
+---
 
-Section-6: Review
-1. Review settings and click on "Create web ACL" and we will make our WAF web ACL
+## **Step 4: Setting Rule Priorities**
 
-Now we will access our Web ACL and notice that the screen displays useful information like requests per 5 minute period, sample requests and rules. 
+1. Ensure that critical rules have higher priority.
+2. Rules are evaluated top-down, so incorrect priority may lead to security misconfigurations.
 
+![Setting Rule Priorities](screenshot4.png)
 
-On AWS WAF> Web ACLs > first-rules, click on the Rules tab,
+---
 
-1. Click on the name of the rules list that we set up earlier (Amazon Reputation IP list)
-2. The AWS interface can be quite confusing as to what a particular rule actually does. For instance, in the "Rules in AWSManagedRulesAmazonIpReputationList" the action simply states "Use action defined in the rule." which is NOT helpful at all. However, researching the documentation of the rule can help us gain clarity on it. For IP reputation: https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-ip-rep.html
-3. Quick clarification on Count: Counts the request but does not block it (a passive approach). It continues to evaluate the rest of the rules. It also keeps track of how many times the request has been counted and inserts custom headers and adds labels for other rules. This is why RULE PRIORITES matter. If you have a higher rule priority that blocks a request before counting, we lose data on the count. In order to have it counted first before blocking, we have to set count to a higher priority rule in order for it get evaluated. 
+## **Step 5: Configuring CloudWatch Metrics**
 
+### **What is CloudWatch?**
+AWS CloudWatch is a monitoring and observability service for AWS resources.
+- Default settings suffice for basic monitoring.
+- Enables logging for security analysis.
 
-This is the core of AWS WAF. Some other features are BOT control, Application Integration SDKs for addtional user telemetry and improved bot detection, IP sets, Regex pattern sets and our own rule groups, and specially Add-on protections that gives us access to the OWASP top 10 ruleset.
+![CloudWatch Configuration](screenshot5.png)
 
+---
 
+## **Step 6: Review & Deploy**
 
+1. Review configurations and click **Create Web ACL**.
+2. AWS WAF now begins filtering requests based on defined rules.
 
+![Final Web ACL](screenshot6.png)
 
+---
 
+## **Monitoring Web ACLs**
+
+1. Navigate to **AWS WAF > Web ACLs > first_rules**.
+2. Under the **Rules tab**, select **Amazon Reputation IP List**.
+3. AWS WAF documentation provides additional rule explanations. ([AWS IP Reputation Rule Group](https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-ip-rep.html))
+
+### **Understanding "Count" in AWS WAF**
+- "Count" mode logs requests without blocking them.
+- Useful for analyzing traffic before enabling full blocking.
+- Rule priority affects how requests are counted or blocked.
+
+![Monitoring Web ACL](screenshot7.png)
+
+---
+
+## **Additional Features of AWS WAF**
+- **BOT Control:** Detects and mitigates bot traffic.
+- **Application Integration SDKs:** Provides additional user telemetry.
+- **IP Sets & Regex Pattern Sets:** Enables custom filtering.
+- **OWASP Top 10 Add-On Protections:** Addresses common security vulnerabilities.
+
+---
+
+## **Conclusion**
+By implementing AWS WAF, we have:
+- Secured our CloudFront distribution.
+- Applied managed rule groups to mitigate threats.
+- Configured logging and monitoring via CloudWatch.
+
+This project demonstrates my expertise in AWS security configurations, application protection, and cloud-based threat mitigation.
