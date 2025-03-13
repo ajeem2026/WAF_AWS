@@ -3,6 +3,7 @@
 ## Introduction
 
 AWS WAF (Web Application Firewall) is a managed service that provides fine-grained control over HTTP/HTTPS requests reaching AWS resources. It allows users to define security rules to protect web applications without the need for additional software.
+![Web ACL Creation](Images/screenshot1.png)
 
 ### **Why AWS WAF?**
 AWS WAF integrates with key AWS services to enhance security:
@@ -27,7 +28,7 @@ AWS WAF operates on three primary components:
 2. Name the ACL **first_rules** and configure the **CloudWatch metric name**.
 3. Attach the ACL to your **CloudFront distribution**.
 
-![Web ACL Creation](Images/screenshot1.png)
+![Web ACL Creation](Images/screenshot2.png)
 
 ---
 
@@ -38,7 +39,7 @@ AWS WAF operates on three primary components:
 3. Select **Amazon Reputation IP List** and click **Add to Web ACL**.
 4. The rule now appears in the managed rule list, consuming **25/5000 WEBACL units**.
 
-![Adding Rules](Images/screenshot2.png)
+![Adding Rules](Images/screenshot3.png)
 
 ---
 
@@ -49,7 +50,7 @@ AWS WAF operates on three primary components:
 3. Enable **CAPTCHA verification** for suspected bot traffic.
 4. Configure a **Token Domain List** to prevent re-verification when users navigate across applications.
 
-![Rule Configuration](Images/screenshot3.png)
+![Rule Configuration](Images/screenshot5.png)
 
 ---
 
@@ -69,7 +70,7 @@ AWS CloudWatch is a monitoring and observability service for AWS resources.
 - Default settings suffice for basic monitoring.
 - Enables logging for security analysis.
 
-![CloudWatch Configuration](Images/screenshot5.png)
+![CloudWatch Configuration](Images/screenshot6.png)
 
 ---
 
@@ -78,7 +79,6 @@ AWS CloudWatch is a monitoring and observability service for AWS resources.
 1. Review configurations and click **Create Web ACL**.
 2. AWS WAF now begins filtering requests based on defined rules.
 
-![Final Web ACL](Images/screenshot6.png)
 
 ---
 
@@ -93,7 +93,7 @@ AWS CloudWatch is a monitoring and observability service for AWS resources.
 - Useful for analyzing traffic before enabling full blocking.
 - Rule priority affects how requests are counted or blocked.
 
-![Monitoring Web ACL](Images/screenshot7.png)
+![Monitoring Web ACL](Images/screenshot9.png)
 
 ---
 
@@ -112,3 +112,4 @@ By implementing AWS WAF, we have:
 - Configured logging and monitoring via CloudWatch.
 
 This project demonstrates my expertise in AWS security configurations, application protection, and cloud-based threat mitigation.
+![Monitoring Web ACL](Images/screenshot11.png)
