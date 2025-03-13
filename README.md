@@ -27,7 +27,7 @@ AWS WAF operates on three primary components:
 2. Name the ACL **first_rules** and configure the **CloudWatch metric name**.
 3. Attach the ACL to your **CloudFront distribution**.
 
-![Web ACL Creation](images/screenshot1.png)
+![Web ACL Creation](Images/screenshot1.png)
 
 ---
 
