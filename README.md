@@ -18,7 +18,7 @@ This project aligns with:
 ## **1️⃣ Deploying AWS WAF**
 ### **🔹 Creating a Web ACL**
 1. Navigate to **AWS WAF** → Click **Create Web ACL**.
-2. Name it **WebAppWAF** and attach it to **CloudFront** (or ALB for backend protection).
+2. Name it and attach it to **CloudFront** 
 3. Set the **default action** to **Allow traffic unless explicitly blocked**.
 
 ![Web ACL Creation](Images/sql-rule.png)
