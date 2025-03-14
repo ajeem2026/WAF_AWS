@@ -15,7 +15,7 @@ This project aligns with:
 - **🛡️ OWASP Top 10** – Mitigates SQL Injection and XSS attacks.
 - **🔐 AWS Well-Architected Framework (Security Pillar)** – Ensures strong access controls and monitoring.
 - **📜 NIST Cybersecurity Framework (CSF)** – Implements best practices for web application protection.
-
+![Log](Images/sql_log.PNG)
 ---
 
 ## **1️⃣ Deploying AWS WAF**
