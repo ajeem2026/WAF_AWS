@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Official Contact Portal</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    /* Header */
+    header {
+      background-color: #004080;
+      color: #fff;
+      padding: 20px 10px;
+      text-align: center;
+    }
+    /* Container */
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      border-radius: 8px;
+    }
+    /* Form Elements */
+    form {
+      display: grid;
+      grid-gap: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #004080;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    /* Credits Section */
+    .credits {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 30px;
+      color: #555;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #004080;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <h1>Official Contact Portal</h1>
+  </header>
+  
+  <!-- Main Container -->
+  <div class="container">
+    <h2>Contact Us</h2>
+    <p>Please fill out the form below and we'll get back to you as soon as possible.</p>
+    <form action="/submit" method="post">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Your full name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Your email address" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="text" id="phone" name="phone" placeholder="Your phone number">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+      <label for="message">Your Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Enter your message here"></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+    
+    <!-- Credits Section -->
+    <div class="credits">
+      <p>Developed by Abid Jeem, CS &amp; Physics double major at Washington &amp; Lee University.</p>
+    </div>
+  </div>
+  
+  <!-- Footer Section -->
+  <footer>
+    &copy; 2025 Official Contact Portal. All rights reserved.
+  </footer>
+</body>
+</html>
